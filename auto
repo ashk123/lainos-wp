@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# auto make for lainos-info 
+
+mkdir build;
+if [[ -f /usr/local/bin/lainos-info ]]
+then
+	echo "you have the lainos-info program!";
+	return ;
+fi
+
+make
+sudo make install
