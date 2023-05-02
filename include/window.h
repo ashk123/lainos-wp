@@ -16,6 +16,7 @@ class MyWindow : public Gtk::Window {
 		Gtk::Box m_box3;
 		Gtk::Box m_box4;
 		Gtk::Box m_box5;
+		Gtk::CheckButton startup;
 		Gtk::Button m_button1, m_button2, m_button3, m_button4,
 			m_button5, m_button6;
 		Gtk::Label m_label;

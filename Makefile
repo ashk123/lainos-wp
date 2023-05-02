@@ -8,3 +8,4 @@ compile :
 install: 
 	install -m 777 build/$(OUTPUT) $(DESTDIR)$(PREFIX)/bin/
 	install -m 777 media/a.svg $(DESTDIR)/usr/share/icons/
+	install -m 777 lainos.desktop $(DESTDIR)/usr/share/

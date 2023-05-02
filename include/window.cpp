@@ -1,14 +1,18 @@
 #include "window.h"
 #include <iostream>
 #include "config.h"
-// #include "audio.h"
+#include <filesystem>
+#include <cstdlib>
 
 #define NORM " "
 #define HOV ":hover "
 #define AC ":active "
 
+
 // init config.h
 strings str;
+
+std::string const HOME = std::getenv("HOME") ? std::getenv("HOME") : ".";
 
 struct CSS {
   Glib::ustring data;
@@ -36,6 +40,16 @@ void SetStyle(Gtk::Box& btn, std::string style, std::string cc, std::string base
   ctx->add_class(cc);
   ctx->add_provider(provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 }
+void SetStyle(Gtk::CheckButton& btn, std::string style, std::string cc, std::string base = NORM) {
+  CSS cstyle;
+  cstyle.data = "." + cc + base + style;
+  std::cout << cstyle.data << std::endl;
+  auto provider = Gtk::CssProvider::create();
+  provider->load_from_data(cstyle.data);
+  auto ctx = btn.get_style_context();
+  ctx->add_class(cc);
+  ctx->add_provider(provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+}
 
 
 MyWindow::MyWindow() 
@@ -45,6 +59,8 @@ MyWindow::MyWindow()
   m_button4(str.gits),
   m_button5(str.git1),
   m_button6(str.git2),
+  
+  startup("Don't show me on each boot"),
   
   m_label(str.title),
   m_box1(Gtk::Orientation::VERTICAL, 0),
@@ -73,6 +89,10 @@ MyWindow::MyWindow()
 	m_box2.append(m_box5);
 	m_box5.append(m_label);
 	m_box5.append(Myimage);
+	startup.set_valign(Gtk::Align::CENTER);
+	startup.set_halign(Gtk::Align::CENTER);
+	SetStyle(startup, "{font-size: 15px; margin-top: 10px;}", "strup1");
+	m_box5.append(startup);
 	m_box5.set_valign(Gtk::Align::CENTER);
 	m_box5.set_halign(Gtk::Align::CENTER);
 	m_label.set_justify(Gtk::Justification::CENTER);
@@ -149,6 +169,20 @@ MyWindow::MyWindow()
 			}
 
 		);
+
+		startup.signal_toggled().connect(
+			[this]() {
+					// std::cout << startup.property_active() << std::endl;
+				  if (startup.property_active() == 0) {
+						std::filesystem::copy("/usr/share/lainos.desktop", HOME + "/.config/autostart");
+				  } 
+				  else if (startup.property_active() == 1) {
+				  	std::filesystem::remove_all(HOME + "/.config/autostart/lainos.desktop");
+				  }
+				}
+			);
+
+		
 
 	m_box2.append(m_box3);
 	//m_box2.append(m_box4);
