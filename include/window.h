@@ -1,6 +1,3 @@
-#include <gtkmm/box.h>
-#include <gtkmm/button.h>
-#include <gtkmm/window.h>
 #include <gtkmm.h>
 #include "about.h"
 
