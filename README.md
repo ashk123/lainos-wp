@@ -4,14 +4,16 @@
 
 ### linux
 
-you can use make tool
+Compile & install manual 
 
 ```text
 make
 sudo make install
 ```
 
-or you can use ./auto script, this script will manage everything about installation process
+Auto compile & install, you can use ./auto script for compiling and installing
+
+this script will manage everything about installation process
 
 ```text
 chmod +x auto ( if needed )
