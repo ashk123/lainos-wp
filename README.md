@@ -2,7 +2,7 @@
 
 ## Install
 
-### linux
+### Linux
 
 Compile & install manual 
 
