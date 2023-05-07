@@ -195,7 +195,3 @@ MyWindow::MyWindow()
 
 MyWindow::~MyWindow(){
 }
-
-void MyWindow::on_button_clicked(const Glib::ustring &data) {
-	std::cout << "This button is clicked with data - " << data << " was presented" << std::endl;
-}
