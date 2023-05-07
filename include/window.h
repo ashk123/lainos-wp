@@ -7,7 +7,6 @@ class MyWindow : public Gtk::Window {
 		~MyWindow() override;
 
 	protected :
-		void on_button_clicked(const Glib::ustring &data);
 		Gtk::Box m_box1;
 		Gtk::Box m_box2;
 		Gtk::Box m_box3;
